@@ -6,3 +6,10 @@
   </div>
 
  <% end %>
+
+<!--Pagination -->		
+		<div class="text-center">
+			<ul class="pagination">
+				<%= will_paginate @places, renderer: BootstrapPagination::Rails %>
+			</ul>		    
+		</div>
