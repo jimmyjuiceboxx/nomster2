@@ -1,0 +1,65 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'helvetica neue', helvetica;
+  	font-weight: 100;
+  	margin:0;
+    padding:0;
+}
+
+body {
+	background: url('/assets/beer.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+	font-family: 'helvetica neue', helvetica;
+  	font-weight: 300;
+  }	
+
+
+.navbar.navbar-inverse {
+  background:url('/assets/stressed_linen.png');
+  border-radius:0;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.7);
+}
+
+.navbar-inverse .navbar-brand{
+  font-family: 'salarymanregular';
+  color: #FFFFFF;
+  font-size: 26px;
+}
+.navbar-inverse .navbar-brand:hover{
+  color: #ABABAB
+
+}
+.navbar-inverse .navbar-text {
+	  font-family: 'salarymanregular';
+	  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 22px;
+  padding-top: 17px;
+  margin: -5px;
+
+}
+.navbar-inverse .navbar-text:hover{
+	color:#FFFFFF;
+}
+
+.navbar-brand {
+	max-width:100px; 
+	margin-top: -6px;
+
+}
+
+.navbar-inverse .navbar-text{
+	color: #23527c;
+	display: inline-block;
+	vertical-align: center;
+}
+
+.navbar-nav > li > a{
+	color: #23527c;
+}
+
+.navbar-nav{
+	padding-left: 30px
+}
