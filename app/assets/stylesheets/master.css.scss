@@ -32,8 +32,8 @@ body {
 
 }
 .navbar-inverse .navbar-text {
-	  font-family: 'salarymanregular';
-	  text-decoration: none;
+	font-family: 'salarymanregular';
+  text-decoration: none;
   color: #FFFFFF;
   font-size: 22px;
   padding-top: 17px;
@@ -74,4 +74,31 @@ body {
   margin-top:10px;
   margin-bottom:15px;
   padding:20px;
+}
+
+.pagination > li > a{
+  color: #FFFFFF;
+background:url('/assets/stressed_linen.png');
+border:#000000;
+}
+.pagination > li > a:hover{
+  color:#23527c
+}
+
+.pagination > .disabled > span:hover{
+  background-color:#000000;
+}
+.pagination > .active > span{
+  background:url('/assets/stressed_linen.png');
+  border:#000000;
+}
+
+.pagination > .active > span:hover{
+  background-color:#000000;
+
+}
+
+.pagination > .disabled > span {
+  background:url('/assets/stressed_linen.png');
+  border:#000000;
 }
