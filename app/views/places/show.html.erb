@@ -8,7 +8,62 @@
         <p><%= @place.address %></p><br />
         <h4> Description: </h4>
         <p><%= @place.description %></p><br />
-      
+
+                <!-- Map API --> 
+
+        <!DOCTYPE html>
+        <div class="map">
+         
+          
+            <html>
+              <head>
+                <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+                <meta charset="utf-8">
+                <title>Simple markers</title>
+              </head>  
+              <body> 
+                <% if @place.latitude.present? && @place.longitude.present? %>  
+                <script>
+                var marker;
+                function initMap() {
+              
+                var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 12,
+                  center: myLatLng
+                });
+
+              
+                  marker = new google.maps.Marker({
+                  position: myLatLng,
+                  draggable: false,
+                  animation: google.maps.Animation.DROP,
+                  map: map,
+                  title: 'Hello World!'
+                });
+                  marker.addListener('click', toggleBounce);
+                }
+                function toggleBounce() {
+                  if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+                  } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                  }
+                }
+
+                </script>
+                <div id="map"></div>
+                <% end %>
+
+                <br />
+               
+                <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+              </body>
+            </html>
+          
+                  
       
 
 
