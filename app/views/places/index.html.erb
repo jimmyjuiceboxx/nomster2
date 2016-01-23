@@ -7,8 +7,22 @@
 	    <div class="panel-body"> 
 	    	<h4> Address:</h4>	  
 		    <p><%= place.address %></p><br />
-		    <h4> Description: </h4>
-		    <p><%= place.description %></p><br />
+
+		    	<div class="clear"><br /></div>
+						<div class="pic-box col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xl-offset-1">
+						<% if place.photos.last.present? && place.photos.last.picture.present? %>
+						<%= image_tag place.photos.last.picture, :class => 'img-responsive', :style => "max-height:350px" %>
+						<% end %>
+						</div>
+			
+			<div class="clear"></div>
+
+
+			<br />
+		    <div class="description col-xs-12">			
+		  	  <h4> Description: </h4>
+		      <p><%= place.description %></p><br />
+		    </div>
 
 		    <% if place.user.present? %>
         	<small><%= place.user.email %></small>
