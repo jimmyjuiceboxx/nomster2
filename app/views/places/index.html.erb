@@ -1,4 +1,3 @@
-    <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1">
      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				  <!-- Indicators -->
 				  <ol class="carousel-indicators">
@@ -10,19 +9,19 @@
 				  <!-- Wrapper for slides -->
 				  <div class="carousel-inner">
 				    <div class="item active">
-				      <%= image_tag 'wood.jpg' %>
+				      <%= image_tag 'bar3.jpg', class: 'img-responsive' %>
 				      <div class="carousel-caption">
-				        Best beer in town . 
+				        Find the best beer in town! 
 				      </div>
 				    </div>
 				      <div class="item">
-					    <%= image_tag 'wood.jpg' %>
+					    <%= image_tag 'bar1.jpg', class: 'img-responsive' %>
 					    <div class="carousel-caption">
-					      Looking for hotdogs?
+					      Looking for draft imports?
 					    </div>
 					  </div>
 				  </div>
-	</div>
+	
 				  <!-- Controls -->
 				  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
 				    <span class="glyphicon glyphicon-chevron-left"></span>
@@ -34,38 +33,50 @@
 <% @places.each do |place| %>
 
   <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1">
-	<div class="panel panel-default">
-	  <div class="panel-heading">	  
-		    <h1><%= link_to place.name, place_path(place) %></h1>
-	  </div>
-	    <div class="panel-body"> 
-	    	<h4> Address:</h4>	  
-		    <p><%= place.address %></p><br />
+	<div class="panel">
+	    <div class="panel-body">
+
+	    	<h1 class="big_header"><%= image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/beer.png", class: "icon") %><%= link_to place.name, place_path(place) %></h1><br /> 
+
+		  	
+	      
+	       	
+	    	<div class="address_box col-xs-12 col-sm-5">
+	        <h4>Address:</h4>   
+	        <p><%= place.address %></p>
+            </div>
+
+            <div class="place_box pull-right col-xs-12 col-sm-7">
+							<% if place.photos.last.present? && place.photos.last.picture.present? %>
+							<%= image_tag place.photos.last.picture, :class => 'img-responsive' %>
+							<% end %>
+			</div> 
+
+           	
+       		<div class="description_box col-xs-12 col-sm-5">
+            <h4>Description:</h4>
+            <p><%= place.description %></p>
+            </div>
+
+	            
+         
+
+              	
 
 		     
 
-		    	<div class="clear"><br /></div>
-						<div class="pic-box col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xl-offset-1">
-						<% if place.photos.last.present? && place.photos.last.picture.present? %>
-						<%= image_tag place.photos.last.picture, :class => 'img-responsive', :style => "max-height:350px" %>
-						<% end %>
-						</div>
+		    	
+						
 			
-			<div class="clear"></div>
 
 
 			<br />
-		    <div class="description col-xs-12">			
-		  	  <h4> Description: </h4>
-		      <p><%= place.description %></p><br />
-		    </div>
+		   
 
-		    <% if place.user.present? %>
-        	<small><%= place.user.email %></small>
-    		<% end %>
+		    
 
     		<% if place.comments.present? %>
-			  <div class="col-xs-12">
+			  <div class="index-comment col-xs-12">
 			    <blockquote>
 			      <% if place.comments.last.humanized_rating.present? %>
 			        <b><%= place.comments.last.humanized_rating %></b> -

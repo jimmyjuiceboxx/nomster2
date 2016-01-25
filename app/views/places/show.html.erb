@@ -1,19 +1,24 @@
      <!-- Places Box -->
 
 <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1 ">   
-  <div class="panel panel-default">       
+  <div class="panel">       
 
-    <div class="panel-heading">
-      <h1><%= @place.name %></h1>
-    </div>
+          
+   
     <div class="panel-body">
+
+      <h1 class="big_header"><%= image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/beer.png", class: "icon") %><%= @place.name %></h1><br />
+
+       <div class="address_box col-xs-12 col-sm-5">
+       <h4>Address:</h4>   
+       <p><%= @place.address %></p>
+       </div>
+
   
        <!-- Photo -->
 
-        <div class='place_box'>
-          <h4>Address:</h4>   
-          <p><%= @place.address %></p>
-          
+        <div class='place_box pull-right col-xs-12 col-sm-7'>
+        
 
         <% if @place.photos.present? %>
          <% @place.photos.each do |photo| %>
@@ -22,10 +27,17 @@
           <% end %>
         <% end %>
         
-        </div>
-        <br />
 
+        </div>
         
+        <div class="description_box pull-left col-xs-12 col-sm-5">
+            
+            <h4>Description:</h4>
+            <p><%= @place.description %></p>
+
+       </div> 
+        
+        <div class="clearfix"></div>
 
 
 
@@ -33,7 +45,7 @@
         <!-- Map API --> 
 
         <!DOCTYPE html>
-        <div class="map col-xs-12">
+        
          
           
             <html>
@@ -84,12 +96,7 @@
               </body>
             </html>
           
-            <div class="caption pull-left col-xs-12">
             
-            <h4>Description:</h4>
-            <p><%= @place.description %></p>
-
-            </div> 
             <!-- Place Edit and Delete Button -->
             
               <div class="pull-right">
@@ -109,7 +116,7 @@
 
 
 
-        </div>
+        
          <div class="clear"></div>
 
                    <div class="clear"></div>
