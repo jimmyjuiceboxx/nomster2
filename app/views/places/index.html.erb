@@ -1,4 +1,38 @@
+    <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1">
+     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    
+				  </ol>
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+				    <div class="item active">
+				      <%= image_tag 'wood.jpg' %>
+				      <div class="carousel-caption">
+				        Best beer in town . 
+				      </div>
+				    </div>
+				      <div class="item">
+					    <%= image_tag 'wood.jpg' %>
+					    <div class="carousel-caption">
+					      Looking for hotdogs?
+					    </div>
+					  </div>
+				  </div>
+	</div>
+				  <!-- Controls -->
+				  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left"></span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right"></span>
+				  </a>
+				</div>
 <% @places.each do |place| %>
+
   <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1">
 	<div class="panel panel-default">
 	  <div class="panel-heading">	  
@@ -7,6 +41,8 @@
 	    <div class="panel-body"> 
 	    	<h4> Address:</h4>	  
 		    <p><%= place.address %></p><br />
+
+		     
 
 		    	<div class="clear"><br /></div>
 						<div class="pic-box col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xl-offset-1">
