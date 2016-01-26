@@ -2,180 +2,153 @@
 
 <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1 ">   
   <div class="panel">       
-
-          
-   
     <div class="panel-body">
 
-      <h1 class="big_header"><%= image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/beer.png", class: "icon") %><%= @place.name %></h1><br />
+      <h1 class="big_header">
+        <%= image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/beer.png", class: "icon") %>
+        <%= @place.name %>
+      </h1><br />
 
-       <div class="address_box col-xs-12 col-sm-5">
-       <h4>Address:</h4>   
-       <p><%= @place.address %></p>
-       </div>
+      <div class="address_box col-xs-12 col-sm-5">
+        <h4>Address:</h4>   
+        <p><%= @place.address %></p>
+      </div>
 
   
-       <!-- Photo -->
+      <!-- Photo -->
 
-        <div class='place_box pull-right col-xs-12 col-sm-7'>
+      <div class='place_box pull-right col-xs-12 col-sm-7'>
         
-
         <% if @place.photos.present? %>
-         <% @place.photos.each do |photo| %>
-            <%= image_tag photo.picture, :class => 'img-responsive' %>
-             <i> Caption: <%= photo.caption %></i><br />
+          <% @place.photos.each do |photo| %>
+          <%= image_tag photo.picture, :class => 'img-responsive' %>
+          <i> Caption: <%= photo.caption %></i><br />
           <% end %>
         <% end %>
+
+      </div>
         
-
-        </div>
-        
-        <div class="description_box pull-left col-xs-12 col-sm-5">
-            
-            <h4>Description:</h4>
-            <p><%= @place.description %></p>
-
-       </div> 
-        
-        <div class="clearfix"></div>
+      <div class="description_box pull-left col-xs-12 col-sm-5">
+        <h4>Description:</h4>
+        <p><%= @place.description %></p>
+      </div> 
+      <div class="clearfix"></div>
 
 
-
-
-        <!-- Map API --> 
-
-        <!DOCTYPE html>
-        
-         
+    <!-- Map API -->
           
-            <html>
-              <head>
-                <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-                <meta charset="utf-8">
-                <title>Simple markers</title>
-              </head>  
-              <body> 
-                <% if @place.latitude.present? && @place.longitude.present? %>  
-                <script>
-                var marker;
-                function initMap() {
-              
-                var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+      <html>
 
-                var map = new google.maps.Map(document.getElementById('map'), {
+        <head>
+          <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+          <meta charset="utf-8">
+          <title>Simple markers</title>
+        </head> 
+
+          <body>
+
+            <% if @place.latitude.present? && @place.longitude.present? %>  
+              <script>
+                var marker;
+                function initMap() {  
+                  var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+                  var map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 12,
                   center: myLatLng
                 });
 
-              
-                  marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                   position: myLatLng,
                   draggable: false,
                   animation: google.maps.Animation.DROP,
                   map: map,
                   title: 'Hello World!'
                 });
-                  marker.addListener('click', toggleBounce);
+
+                marker.addListener('click', toggleBounce);
                 }
                 function toggleBounce() {
                   if (marker.getAnimation() !== null) {
-                    marker.setAnimation(null);
-                  } else {
-                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                  marker.setAnimation(null);
+                  } 
+                  else {
+                  marker.setAnimation(google.maps.Animation.BOUNCE);
                   }
                 }
-
-                </script>
-                <div id="map"></div>
-                <% end %>
-
-                <br />
+              </script>
+              <div id="map"></div>
+            <% end %>
+              <br />
                
-                <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
-              </body>
-            </html>
+            <script async defer
+              src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap">
+            </script>
+          </body>
+      </html>
           
             
-            <!-- Place Edit and Delete Button -->
+      <!-- Place Edit and Delete Button -->
             
-              <div class="pull-right">
-                <% if current_user && current_user == @place.user %>
+        <div class="pull-right">
+          <% if current_user && current_user == @place.user %>
 
+            <div class="btn btn-primary" data-toggle="modal" data-target="#addPhotoModal">
+              Add a photo
+            </div>  
 
-                <div class="btn btn-primary" data-toggle="modal" data-target="#addPhotoModal">
-                      Add a photo
-                </div>  
-
-                <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
-                  
-                <%= link_to 'Delete', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
-                <% end %>
-              </div>
-
-
-
-
-        
-         <div class="clear"></div>
-
-                   <div class="clear"></div>
-          <br />
+            <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
+                    
+            <%= link_to 'Delete', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+        <div class="clear"></div>
+        <br />
           
     </div>
   </div>    
 
 
+      <!-- Comment Box -->
 
-
-
-
-
-
-    <!-- Comment Box -->
-
-    <div class=" panel-body comments col-xs-12">   
+      <div class=" panel-body comments col-xs-12">   
         <div class="comment_header col-xs-12">
-
           <div class="panel-body comment_title_box col-xs-12">
+
               <div class='title_box'>
-              <h1 class="big_comment">Comments
-              <img src="https://cdn3.iconfinder.com/data/icons/simple-microphone-icon/512/Comment_Icon-2-64.png" > 
-              <br />
+                <h1 class="big_comment">Comments
+                <img src="https://cdn3.iconfinder.com/data/icons/simple-microphone-icon/512/Comment_Icon-2-64.png" > 
+                <br />
               </div>
           </div> 
-
           <br />
 
-
-              <div class="comment_button col-xs-12">
-              <button class="btn btn-primary pull-right add_a_comment" data-toggle="modal" data-target="#myModal">
-                Leave a Comment!
-              </button>
-        </div></h1>
-    </div>
-             
-              <div class="clear"></div>
-            <% @place.comments.each do |comment| %>
-            <div class="col-xs-12">
-              <blockquote>
-                <% if comment.humanized_rating.present? %>
-                <b><%= comment.humanized_rating %></b> -
-                <% end %>
-                   <%= comment.message %>
-                <small><%= comment.user.email %></small>
-              </blockquote>
-            </div>
-            <% end %>
-
-
+          <div class="comment_button col-xs-12">
+            <button class="btn btn-primary pull-right add_a_comment" data-toggle="modal" data-target="#myModal">
+              Leave a Comment!
+            </button>
+          </div></h1>
+        </div>
+            
         <div class="clear"></div>
 
 
+        <% @place.comments.each do |comment| %>
+          <div class="col-xs-12">
+            <blockquote>
+              <% if comment.humanized_rating.present? %>
+              <b><%= comment.humanized_rating %></b> -
+              <% end %>
 
-
+              <%= comment.message %>
+              <small><%= comment.user.email %></small>
+            </blockquote>
+          </div>
+        <% end %>
+        <div class="clear"></div>
+      </div>
       
-        <!-- Photo Modal -->
+
+      <!-- Photo Modal -->
 
       <div class="modal fade" id="addPhotoModal" tabindex="-1" role="dialog" aria-labelledby="AddPhotoLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -187,25 +160,21 @@
 
             <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
 
-            <div class="modal-body">
-              <div class="clear"></div>
+              <div class="modal-body">
+                <div class="clear"></div>
           
-            <%= f.input :picture %>
-            <%= f.input :caption %>
+                <%= f.input :picture %>
+                <%= f.input :caption %>
           
-            </div>
-            <div class="modal-footer">
-              
-             <%= f.submit "Add Photo", class: 'btn btn-primary' %>
+              </div>
 
-            </div>
+              <div class="modal-footer">
+                <%= f.submit "Add Photo", class: 'btn btn-primary' %>
+              </div>
             <% end %>
           </div>
         </div>
       </div>  
-
-
-       
 
 
       <!-- Comment Modal -->
@@ -220,18 +189,17 @@
 
             <%= simple_form_for @comment, url: place_comments_path(@place) do |f| %>
 
-            <div class="modal-body">
-              <div class="clear"></div>
-          
-            <%= f.input :message %>
-            <%= f.input :rating, as: :select, collection: Comment::RATINGS %><br />
-          
-            </div>
-            <div class="modal-footer">
-              
-             <%= f.submit "Submit Comment", class: 'btn btn-primary' %>
+              <div class="modal-body">
+                <div class="clear"></div>
+            
+                <%= f.input :message %>
+                <%= f.input :rating, as: :select, collection: Comment::RATINGS %><br />
+            
+              </div>
 
-            </div>
+              <div class="modal-footer">
+                <%= f.submit "Submit Comment", class: 'btn btn-primary' %>
+              </div>
             <% end %>
           </div>
         </div>

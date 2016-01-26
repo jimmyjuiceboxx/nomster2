@@ -1,16 +1,22 @@
- <div class="detail-box col-xs-12 col-sm-8 col-sm-offset-2">
-	<div class="panel panel-default">
-			<div class="panel-heading">
-			<h1> Enter Your Place Details </h1>
-			</div>
-			<div class="panel-body"> 
-			<%= simple_form_for @place do |f| %>
+<div class="detail-box col-xs-12 col-sm-8 col-sm-offset-2">
+	<div class="panel">
+		<div class="panel-body"> 
+
+		  <h1 class="big_header">
+	      Enter Your Place Details 
+		  </h1>
+		  <br />	
+
+			<div class="form-inputs">
+			  <%= simple_form_for @place do |f| %>
 			    <%= f.input :name %> 
 			    <%= f.input :address %> 
 			    <%= f.input :description %>
 			    <br />
 			    <%= f.submit 'Create', class:'btn btn-primary' %>
-			</div>
-	<% end %>    
+	      <% end %>  
+	    </div>
+	    
+	  </div>      
 	</div>
 </div>	

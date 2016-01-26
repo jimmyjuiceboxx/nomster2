@@ -35,14 +35,14 @@
         </li>
 
       </ul>
-      <ul class="nav navbar-nav navbar-right">
 
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <li><%= link_to 'My Profile', user_path(current_user) %></li>
- 			  <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+        	<li><%= link_to 'My Profile', user_path(current_user) %></li>
+ 			  	<li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         <% else %>
-        <li><%= link_to 'Sign in', new_user_session_path %></li>
-        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        	<li><%= link_to 'Sign in', new_user_session_path %></li>
+        	<li><%= link_to 'Sign up', new_user_registration_path %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -50,10 +50,10 @@
 </nav>
 
 <% if notice.present? %>
-<p class="alert alert-info"><%= notice %></p>
+	<p class="alert alert-info"><%= notice %></p>
 <% end %>
 <% if alert.present? %>
-<p class="alert alert-danger"><%= alert %></p>
+	<p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
 <%= yield %>

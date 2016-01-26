@@ -1,36 +1,96 @@
+
+<!-- Profile Information -->
+
 <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1 ">
   <div class="panel"> 
     <div class="panel-body">
-        <h1 class="big_header text-center">User Profile</h1><br />
 
-        <div class="col-xs-4">
-          <%= image_tag 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-128.png' %>
-        </div>
+      <h1 class="big_header text-center">
+      	User Profile
+      </h1> <br />
 
-        <div class="col-xs-8">
-					<h1><%= @user.email %></h1>
-					<h3>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
-					<h4><%= @user.comments.count %> total comments</h4>
-					<h4><%= @user.comments.where(rating: '5_stars').count %> total 5 star reviews</h4>
-				</div>
-				<div class="clear"></div>
+      <div class="col-sm-2 col-sm-offset-5">
+        <%= image_tag 'https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-128.png' %>
+      </div>
 
-        <br /><br />
-				<h1 class="text-center">My Comments</h1>
-				<br /><br />
-				
-					<% @user.comments.each do |comment| %>
-	          <div class="col-xs-12 col-sm-6">
-	          	<h2 class="text-center"><%= link_to comment.place.name, place_path(comment.place) %></h2>
-						  <blockquote>
-						    <% if comment.humanized_rating.present? %>
-						      <b><%= comment.humanized_rating %></b> -
-						    <% end %>
-						    <%= comment.message %>
-						    <small><%= comment.user.email %></small>
-						  </blockquote>
-					  </div>
-          <% end %>
+      <div class="member-info col-sm-8 col-sm-offset-2">
+		  	<h1><%= @user.email %></h1>
+				<h3>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
+				<h4>Total comments: <%= @user.comments.count %></h4>
+				<h4>Total 5 star reviews: <%= @user.comments.where(rating: '5_stars').count %></h4>
+			</div>
 	  </div>	
   </div>	
-</div>
+</div>	
+
+<div class="clear"></div>
+
+<!-- Comments -->
+
+<div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1 ">
+  <div class="panel"> 
+    <div class="panel-body">
+
+      
+			<h1 class="big_header text-center">
+				My Comments
+			</h1>
+			<br /><br />
+
+			<% @user.comments.each do |comment| %>
+	      <div class="col-xs-12 col-sm-6">
+
+	        <h1 class="text-center">
+	        	<%= link_to comment.place.name, place_path(comment.place) %>
+	        </h1>
+
+					<blockquote>
+						<% if comment.humanized_rating.present? %>
+						  <b><%= comment.humanized_rating %></b> -
+						<% end %>
+						<%= comment.message %>
+						<small><%= comment.user.email %></small>
+				  </blockquote>
+
+				</div>
+      <% end %>
+
+    </div>	
+  </div>	
+</div>	          
+
+<!-- Places -->
+
+<% @user.places.each do |place| %>        
+<div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1 ">
+  <div class="panel"> 
+    <div class="panel-body">	
+      <div class="clear"></div>
+        
+      <h1 class="big_header text-center">
+      	<%= link_to place.name, place_path(place) %>
+      </h1><br /> 
+	       	
+	    <div class="address_box col-xs-12 col-sm-5">
+	      <h4>Address:</h4>   
+	      <p><%= place.address %></p>
+      </div>
+
+      <div class="place_box pull-right col-xs-12 col-sm-7">
+  			<% if place.photos.last.present? && place.photos.last.picture.present? %>
+		  	<%= image_tag place.photos.last.picture, :class => 'img-responsive' %>
+			  <% end %>
+		  </div> 
+
+           	
+      <div class="description_box col-xs-12 col-sm-5">
+        <h4>Description:</h4>
+        <p><%= place.description %></p>
+      </div>
+      <div class="clear"></div>
+  
+      
+    </div>	
+  </div>	
+</div>	          
+<% end %> 

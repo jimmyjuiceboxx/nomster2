@@ -27,9 +27,8 @@ class PlacesController < ApplicationController
 
     def edit
     	@place = Place.find(params[:id])
-
     	if @place.user != current_user 
-    	   return render text: 'Not Allowed, status :forbidden'
+    	return render text: 'Not Allowed, status :forbidden'
     	end  
     end	
 
@@ -43,8 +42,7 @@ class PlacesController < ApplicationController
         redirect_to root_path
         else
         render :edit, status: :unprocessable_entity
-        end
-    	
+        end	
     end	
 
     def destroy

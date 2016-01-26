@@ -1,99 +1,103 @@
-     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-				  <!-- Indicators -->
-				  <ol class="carousel-indicators">
-				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				    
-				  </ol>
+      <!-- Image Carousel --> 
 
-				  <!-- Wrapper for slides -->
-				  <div class="carousel-inner">
-				    <div class="item active">
-				      <%= image_tag 'bar3.jpg', class: 'img-responsive' %>
-				      <div class="carousel-caption">
-				        Find the best beer in town! 
-				      </div>
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+
+			  <!-- Indicators -->
+				<ol class="carousel-indicators">
+				  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				  <li data-target="#carousel-example-generic" data-slide-to="1"></li>  
+				</ol>
+
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+
+				  <div class="item active">
+				    <%= image_tag 'bar3.jpg', class: 'img-responsive' %>
+				    <div class="carousel-caption">
+				      Find the best beer in town! 
 				    </div>
-				      <div class="item">
-					    <%= image_tag 'bar1.jpg', class: 'img-responsive' %>
-					    <div class="carousel-caption">
-					      Looking for draft imports?
-					    </div>
-					  </div>
 				  </div>
+
+				  <div class="item">
+					  <%= image_tag 'bar1.jpg', class: 'img-responsive' %>
+					  <div class="carousel-caption">
+					    Looking for draft imports?
+					  </div>
+					</div>
+
+			  </div>
 	
-				  <!-- Controls -->
-				  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-				    <span class="glyphicon glyphicon-chevron-left"></span>
-				  </a>
-				  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-				    <span class="glyphicon glyphicon-chevron-right"></span>
-				  </a>
-				</div>
+
+		    <!-- Controls -->
+				<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+				  <span class="glyphicon glyphicon-chevron-left"></span>
+			  </a>
+
+				<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+				  <span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+		  </div>
+
+
+      <!-- Places -->
+
 <% @places.each do |place| %>
 
   <div class="detail-box col-xs-12 col-sm-10 col-sm-offset-1">
-	<div class="panel">
+	  <div class="panel">
 	    <div class="panel-body">
 
-	    	<h1 class="big_header"><%= image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/beer.png", class: "icon") %><%= link_to place.name, place_path(place) %></h1><br /> 
-
-		  	
-	      
+	    	<h1 class="big_header">
+	    		<%= image_tag("https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/beer.png", class: "icon") %>
+	    		<%= link_to place.name, place_path(place) %>
+	    	</h1>
+	    	<br />
+	    
 	       	
 	    	<div class="address_box col-xs-12 col-sm-5">
 	        <h4>Address:</h4>   
 	        <p><%= place.address %></p>
-            </div>
+        </div>
 
-            <div class="place_box pull-right col-xs-12 col-sm-7">
-							<% if place.photos.last.present? && place.photos.last.picture.present? %>
-							<%= image_tag place.photos.last.picture, :class => 'img-responsive' %>
-							<% end %>
-			</div> 
-
-           	
-       		<div class="description_box col-xs-12 col-sm-5">
-            <h4>Description:</h4>
-            <p><%= place.description %></p>
-            </div>
-
-	            
-         
-
-              	
-
-		     
-
-		    	
-						
-			
-
-
-			<br />
+        <div class="place_box pull-right col-xs-12 col-sm-7">
+				  <% if place.photos.last.present? && place.photos.last.picture.present? %>
+					<%= image_tag place.photos.last.picture, :class => 'img-responsive' %>
+			  	<% end %>
+			  </div> 
+	
+       	<div class="description_box col-xs-12 col-sm-5">
+          <h4>Description:</h4>
+          <p><%= place.description %></p>
+        </div>
+			  <br />
 		   
 
 		    
 
     		<% if place.comments.present? %>
-			  <div class="index-comment col-xs-12">
-			    <blockquote>
-			      <% if place.comments.last.humanized_rating.present? %>
-			        <b><%= place.comments.last.humanized_rating %></b> -
-			      <% end %>
-			      <%= place.comments.last.message %>
-			      <small><%= place.comments.last.user.email %></small>
-			    </blockquote>
-			  </div>
-			<% end %>
-	    </div>
-	</div>	 	 
-  </div>
-		 	<% end %>
+				  <div class="index-comment col-xs-12">
+				    <blockquote>
+				      <% if place.comments.last.humanized_rating.present? %>
+				        <b><%= place.comments.last.humanized_rating %></b> -
+				      <% end %>
+				      <%= place.comments.last.message %>
+				      <small><%= place.comments.last.user.email %></small>
+				    </blockquote>
+				  </div>
+			  <% end %>
 
-		<!--Pagination -->		
-				<div class="text-center">
-					<ul class="pagination">
-						<%= will_paginate @places, renderer: BootstrapPagination::Rails %>
-					</ul>		    
-				</div>
+	    </div>
+	  </div>	 	 
+  </div>
+
+<% end %>
+
+		  <!--Pagination -->		
+			<div class="text-center">
+				<ul class="pagination">
+				  <%= will_paginate @places, renderer: BootstrapPagination::Rails %>
+				</ul>		    
+			</div>
+			
